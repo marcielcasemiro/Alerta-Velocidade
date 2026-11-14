@@ -3,6 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// A chave de assinatura não fica no repositório: vem dos Secrets do GitHub
+// (KEYSTORE_BASE64 e KEYSTORE_PASSWORD), decodificada pelo workflow.
+val keystorePassword: String? = System.getenv("KEYSTORE_PASSWORD")
+
 android {
     namespace = "com.marciel.alertavelocidade"
     compileSdk = 35
@@ -11,23 +15,24 @@ android {
         applicationId = "com.marciel.alertavelocidade"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
 
-    // Chave fixa: permite instalar versões novas por cima sem desinstalar.
+    // Chave própria do app (fixa): permite instalar versões novas por cima.
     signingConfigs {
-        getByName("debug") {
-            storeFile = file("debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = keystorePassword
+            keyAlias = "alertavelocidade"
+            keyPassword = keystorePassword
         }
     }
 
     buildTypes {
-        getByName("debug") {
-            signingConfig = signingConfigs.getByName("debug")
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

@@ -6,7 +6,7 @@ App Android simples, para uso pessoal: mostra a velocidade atual pelo GPS e toca
 
 1. No GitHub, abra a aba **Actions** do repositório.
 2. Clique na execução mais recente de **Gerar APK** (com ✓ verde).
-3. Em **Artifacts**, baixe **AlertaVelocidade-apk** (vem em .zip; dentro está o `app-debug.apk`).
+3. Em **Artifacts**, baixe **AlertaVelocidade-apk** (vem em .zip; dentro está o `app-release.apk`).
 4. No celular, abra o APK e permita "instalar apps desta fonte".
 
 ## Como usar
@@ -15,3 +15,10 @@ App Android simples, para uso pessoal: mostra a velocidade atual pelo GPS e toca
 - Toque em **Iniciar** e aceite as permissões de localização e notificação.
 - Acima do limite: tela fica vermelha, alarme e vibração a cada 3 segundos.
 - Toque em **Parar** para encerrar.
+
+## Chave de assinatura
+
+O APK é assinado com uma chave própria, guardada nos Secrets do GitHub
+(Settings → Secrets and variables → Actions): `KEYSTORE_BASE64` e
+`KEYSTORE_PASSWORD`. Guarde também uma cópia da chave fora do GitHub:
+sem ela não dá para instalar atualizações por cima da versão instalada.

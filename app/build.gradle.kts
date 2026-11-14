@@ -5,7 +5,7 @@ plugins {
 
 // A chave de assinatura não fica no repositório: vem dos Secrets do GitHub
 // (KEYSTORE_BASE64 e KEYSTORE_PASSWORD), decodificada pelo workflow.
-val keystorePassword: String? = System.getenv("KEYSTORE_PASSWORD")
+val keystorePassword: String? = System.getenv("KEYSTORE_PASSWORD")?.trim()
 
 android {
     namespace = "com.marciel.alertavelocidade"

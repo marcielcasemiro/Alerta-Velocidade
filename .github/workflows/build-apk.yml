@@ -25,7 +25,7 @@ jobs:
             echo "::error::Faltam os Secrets KEYSTORE_BASE64 e KEYSTORE_PASSWORD (Settings > Secrets and variables > Actions)."
             exit 1
           fi
-          echo "$KEYSTORE_BASE64" | base64 -d > app/release.keystore
+          echo "$KEYSTORE_BASE64" | tr -d " \r\n" | base64 -d > app/release.keystore
 
       - name: Compilar APK
         env:
